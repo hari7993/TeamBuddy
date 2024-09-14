@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<!-- === Coding by CodingLab | www.codinglabweb.com === -->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+    <!-- ===== Link Swiper's CSS ===== -->
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css"/>
+
+    <!-- ===== Fontawesome CDN Link ===== -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"/>
+        
+    <!-- ===== CSS ===== -->
+    <!-- <link rel="stylesheet" href="style.css">
+     -->
+     <style>
+         /* === Google Font Import - Poppins === */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body{
+  /* height: 100vh; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f2f2f2;
+}
+
+section{
+  margin: 2em 1em;
+  position: relative;  
+  /* height: 600px;
+  width: 1075px; */
+  display: flex;
+  align-items: center;
+}
+.card{
+  position: relative;
+  background: #fff;
+  border-radius: 20px;
+  margin: 20px 20px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card::before{
+  content: "";
+  position: absolute;
+  height: 40%;
+  width: 100%;
+  background:  #2a9fe8;
+  border-radius: 20px 20px 0 0;
+}
+.card-content{
+    height: 370px;
+    width: 300px;
+}
+.card .card-content{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 30px;
+  position: relative;
+  z-index: 100;
+}
+
+section .card .image{
+  height: 140px;
+  width: 140px;
+  border-radius: 50%;
+  padding: 3px;
+  background:  #2a9fe8;
+}
+
+section .card .image img{
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.card .media-icons{
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.card .media-icons i{
+  color: #fff;
+  opacity: 0.6;
+  margin-top: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.card .media-icons i:hover{
+  opacity: 1;
+}
+
+.card .name-profession{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 10px;
+  color: blue;
+} 
+
+.name-profession .name{
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.name-profession .profession{
+  font-size:15px;
+  font-weight: 500;
+}
+
+.card .rating{
+  display: flex;
+  align-items: center;
+  margin-top: 18px;
+}
+
+.card .rating i{
+  font-size: 18px;
+  margin: 0 2px;
+  color:  #2a9fe8;
+}
+
+.card .button{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+}
+
+.card .button button{
+  background: #2a9fe8;
+  outline: none;
+  border: none;
+  color: #fff;
+  padding: 8px 22px;
+  border-radius: 20px;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.button button:hover{
+  background: #6616d0;
+}
+.main{
+    display: grid;
+    grid-template-columns: auto auto auto;
+}
+     </style>
+    <!--<title>Card with Sliding Feature</title>-->
+</head>
+<body>
+
+  <section>
+    <div class="main" id="i">
+      {% if s == 0 %}
+      <div style="font-size: 5em; width: 100%; margin: 2em auto 0em auto;font-weight: 500;">Sorry No Requests Here</div>
+      {% endif %}
+      {% for l in lis:%}
+      <div class="card">
+          <div class="card-content">
+              <div class="image">
+                {% if l['gender'] == "Male" %}
+                  <img src="../static/images/user-male.png" alt="">
+                {% else %}
+                  <img src="../static/images/user-female.jpg" alt="">
+                {% endif %}
+              </div>
+              
+              <div class="name-profession">
+                  <span class="name">{{l['name']}}</span>
+                  <div style="display: flex; flex-direction: row; width:200px; "><span style="flex-grow: 1;">Age: {{l['age']}}</span><span>Gender: {{l['gender']}}</span></div>
+                  <div style="display: flex; flex-direction: row; width:200px; "><span class="profession" style="flex-grow: 1;">Marital Status: {{l['martial']}}</span><span>Date: {{l['date']}}</span></div>
+                  <div style="display: flex; flex-direction: row; width:200px; "><span class="profession" style="flex-grow: 1;">From: {{l['start']}}</span><span>Travel: {{l["travel"]}}</span></div>
+              </div>
+              <div class="button">
+                  <form action="/accept" method="post">
+                    <input type="text" value="{{l['travel']}}" name= "travel" hidden>
+                    <input type="text" value="{{l['start']}}" name="start" hidden>
+                    <input type="text" value="{{l['date']}}" name= "date" hidden>
+                    <input type="text" value="{{l['id']}}" name = "id" hidden>
+                    <button type="submit" class="aboutMe">Accept</button>
+                  </form>
+                  <form action="/reject" method="post">
+                    <input type="text" value="{{l['id']}}" name = "id" hidden>
+                    <button class="hireMe">Reject</button>
+                  </form>
+              </div>
+          </div>
+      </div>
+      {% endfor %}
+</div>
+  </section>
+
+  <!-- Swiper JS -->
+  <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  
+</body>
+</html>

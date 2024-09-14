@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- CSS only -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+ rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+ <style>
+   .images{
+    /* background-image:linear-gradient(#34e89e,#0f3443); */
+    background-color:white;
+    height: auto;
+    width: 100%;  
+    position: relative;
+    display: inline-block;
+}
+#slam{
+    padding: 20px;
+}
+.gun{ width:100%;
+    height:120vh;
+    background-color: #575656;
+    background-size: cover;
+    background-position:center;
+   display: inline-block; }  
+    .gun h1{ text-transform: uppercase;
+    font-weight: 500;
+    text-align: center;
+  color:rgb(31, 29, 29);} 
+  .den{  width: 550px;
+    padding: 10px;
+    position: relative;
+     /* top: 35%; */
+    left: 50%; 
+    transform: translate(-110%,25%);  
+    background : #f0efef;
+    text-align: center;
+    display:  inline-block;
+    border-radius:20px; }
+    .den h1{ text-transform: uppercase;
+        font-weight: 200px;
+        color:rgb(14, 13, 13);
+        text-align: center;
+    }
+           .soon{  width: 550px;
+                    padding: 10px;
+                    position: relative;
+                    /* top: 35%; */
+                    left: 50%; 
+                    transform: translate(-90%,25%);    
+                    background : #f0eeee;
+                    text-align: center;
+                    display:  inline-block;
+                    border-radius:20px; }
+                    .soon h1{  text-align: center;
+                    font-weight: 200;
+                text-transform: uppercase;
+                color: rgb(17, 17, 17);
+            }
+.story{
+    padding: 20px;
+    background-color: #575656;
+    color: #f0eeee;
+}                        
+     .story h1{
+         text-align: center;
+         text-transform: uppercase;
+     }  
+ </style>
+    <title>{{monu["Name"]}}</title>
+</head>
+<body>
+  <div>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">  
+        <div class="container-fluid"  style="background-color: rgb(82, 80, 82);">
+          <a class="navbar-brand" href="#">TOURISM</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-end" id="navbarNavAltMarkup" >
+            <div class="navbar-nav">
+                <a class="btn btn-danger" href="#gun" style="margin: 15px;">about</a>
+                <a class="btn btn-danger" aria-current="page" href="/templates/index.html" style="margin: 15px;">Home</a>
+                <a class="btn btn-danger" href="/templates/index.html#contact" style="margin: 15px;">contact</a>
+                <a class="btn btn-danger" href="/templates/index.html#contact" style="margin: 15px;">feedback</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+      <div class="images">
+        <img src= "{{monu['img']}}" class="rounded mx-auto d-block" alt="Taj Mahal" id="slam" style="height:35em;width:100%">
+      </div>
+<div class="gun" id="gun">
+    <h1> SOME INTRESTING FACTS:</h1>
+    <form class="den">
+        <h1>History</h1> 
+        <p>{{monu['his']}}</p> 
+            <hr>  
+    </form>
+    <form class="soon" >     
+        <h1>Description</h1>
+      <p>{{monu['desc']}}</p>
+           <hr>
+    </form>
+</div>
+<div class="story">
+    <h1>Things to do:</h1>
+    <hr>
+    <p>{{monu["art"]}}</p>
+</div>
+</div>
+</body>
+</html>
